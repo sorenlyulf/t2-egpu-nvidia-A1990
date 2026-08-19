@@ -1,0 +1,14 @@
+[Unit]
+Description=eGPU NVIDIA attach (Mac T2: 32-bit BAR windowing + GSP OFF)
+# After boltd has authorized the Thunderbolt chain
+After=bolt.service multi-user.target
+Wants=bolt.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/egpu-attach.sh
+RemainAfterExit=yes
+TimeoutStartSec=180
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,796 @@
+================================================================================
+ REPORT VERIFICA eGPU RTX 3090 su MacBookPro16,1 (Apple T2) - CachyOS Linux
+ Data: 2026-08-19 12:43 CEST | Kernel: 7.1.8-1-cachyos | Driver NVIDIA: 580.173.02
+ Enclosure: Thunderbolt (JHL9480 Barlow Ridge) | Link: PCIe x4 @ 2.5 GT/s
+================================================================================
+
+########## 1. NVIDIA-SMI (riconoscimento modello, VRAM, driver) ##########
+
+Wed Aug 19 12:42:11 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 3090        Off |   00000000:45:00.0 Off |                  N/A |
+| 39%   35C    P2            104W /  370W |   19162MiB /  24576MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            1061      C   llama-server                          19156MiB |
++-----------------------------------------------------------------------------------------+
+
+---------- nvidia-smi -q (dettaglio completo) ----------
+
+==============NVSMI LOG==============
+
+Timestamp                                              : Wed Aug 19 12:42:11 2026
+Driver Version                                         : 580.173.02
+CUDA Version                                           : 13.0
+
+Attached GPUs                                          : 1
+GPU 00000000:45:00.0
+    Product Name                                       : NVIDIA GeForce RTX 3090
+    Product Brand                                      : GeForce
+    Product Architecture                               : Ampere
+    Display Mode                                       : Requested functionality has been deprecated
+    Display Attached                                   : No
+    Display Active                                     : Disabled
+    Persistence Mode                                   : Disabled
+    Addressing Mode                                    : None
+    MIG Mode
+        Current                                        : N/A
+        Pending                                        : N/A
+    Accounting Mode                                    : Disabled
+    Accounting Mode Buffer Size                        : 4000
+    Driver Model
+        Current                                        : N/A
+        Pending                                        : N/A
+    Serial Number                                      : N/A
+    GPU UUID                                           : GPU-6ead800a-3075-f559-f53b-ba89d786ed04
+    GPU PDI                                            : 0xed0bd194f9c90c05
+    Minor Number                                       : 0
+    VBIOS Version                                      : 94.02.59.00.5C
+    MultiGPU Board                                     : No
+    Board ID                                           : 0x4500
+    Board Part Number                                  : N/A
+    GPU Part Number                                    : 2204-300-A1
+    FRU Part Number                                    : N/A
+    Platform Info
+        Chassis Serial Number                          : N/A
+        Slot Number                                    : N/A
+        Tray Index                                     : N/A
+        Host ID                                        : N/A
+        Peer Type                                      : N/A
+        Module Id                                      : 1
+        GPU Fabric GUID                                : N/A
+    Inforom Version
+        Image Version                                  : G001.0000.03.03
+        OEM Object                                     : 2.0
+        ECC Object                                     : N/A
+        Power Management Object                        : N/A
+    Inforom BBX Object Flush
+        Latest Timestamp                               : N/A
+        Latest Duration                                : N/A
+    GPU Operation Mode
+        Current                                        : N/A
+        Pending                                        : N/A
+    GPU C2C Mode                                       : N/A
+    GPU Virtualization Mode
+        Virtualization Mode                            : None
+        Host VGPU Mode                                 : N/A
+        vGPU Heterogeneous Mode                        : N/A
+    GPU Recovery Action                                : None
+    GSP Firmware Version                               : N/A
+    IBMNPU
+        Relaxed Ordering Mode                          : N/A
+    PCI
+        Bus                                            : 0x45
+        Device                                         : 0x00
+        Domain                                         : 0x0000
+        Base Classcode                                 : 0x3
+        Sub Classcode                                  : 0x0
+        Device Id                                      : 0x220410DE
+        Bus Id                                         : 00000000:45:00.0
+        Sub System Id                                  : 0x40391458
+        GPU Link Info
+            PCIe Generation
+                Max                                    : 4
+                Current                                : 4
+                Device Current                         : 4
+                Device Max                             : 4
+                Host Max                               : 3
+            Link Width
+                Max                                    : 16x
+                Current                                : 4x
+        Bridge Chip
+            Type                                       : N/A
+            Firmware                                   : N/A
+        Replays Since Reset                            : 0
+        Replay Number Rollovers                        : 0
+        Tx Throughput                                  : 48 KB/s
+        Rx Throughput                                  : 0 KB/s
+        Atomic Caps Outbound                           : N/A
+        Atomic Caps Inbound                            : N/A
+    Fan Speed                                          : 39 %
+    Performance State                                  : P2
+    Clocks Event Reasons
+        Idle                                           : Active
+        Applications Clocks Setting                    : Not Active
+        SW Power Cap                                   : Not Active
+        HW Slowdown                                    : Not Active
+            HW Thermal Slowdown                        : Not Active
+            HW Power Brake Slowdown                    : Not Active
+        Sync Boost                                     : Not Active
+        SW Thermal Slowdown                            : Not Active
+        Display Clock Setting                          : Not Active
+    Clocks Event Reasons Counters
+        SW Power Capping                               : 368950339 us
+        Sync Boost                                     : 0 us
+        SW Thermal Slowdown                            : 0 us
+        HW Thermal Slowdown                            : 0 us
+        HW Power Braking                               : 0 us
+    Sparse Operation Mode                              : N/A
+    FB Memory Usage
+        Total                                          : 24576 MiB
+        Reserved                                       : 204 MiB
+        Used                                           : 19162 MiB
+        Free                                           : 5212 MiB
+    BAR1 Memory Usage
+        Total                                          : 64 MiB
+        Used                                           : 4 MiB
+        Free                                           : 60 MiB
+    Conf Compute Protected Memory Usage
+        Total                                          : 0 MiB
+        Used                                           : 0 MiB
+        Free                                           : 0 MiB
+    Compute Mode                                       : Default
+    Utilization
+        GPU                                            : 0 %
+        Memory                                         : 0 %
+        Encoder                                        : 0 %
+        Decoder                                        : 0 %
+        JPEG                                           : 0 %
+        OFA                                            : 0 %
+    Encoder Stats
+        Active Sessions                                : 0
+        Average FPS                                    : 0
+        Average Latency                                : 0
+    FBC Stats
+        Active Sessions                                : 0
+        Average FPS                                    : 0
+        Average Latency                                : 0
+    DRAM Encryption Mode
+        Current                                        : N/A
+        Pending                                        : N/A
+    ECC Mode
+        Current                                        : N/A
+        Pending                                        : N/A
+    ECC Errors
+        Volatile
+            SRAM Correctable                           : N/A
+            SRAM Uncorrectable Parity                  : N/A
+            SRAM Uncorrectable SEC-DED                 : N/A
+            DRAM Correctable                           : N/A
+            DRAM Uncorrectable                         : N/A
+        Aggregate
+            SRAM Correctable                           : N/A
+            SRAM Uncorrectable Parity                  : N/A
+            SRAM Uncorrectable SEC-DED                 : N/A
+            DRAM Correctable                           : N/A
+            DRAM Uncorrectable                         : N/A
+            SRAM Threshold Exceeded                    : N/A
+        Aggregate Uncorrectable SRAM Sources
+            SRAM L2                                    : N/A
+            SRAM SM                                    : N/A
+            SRAM Microcontroller                       : N/A
+            SRAM PCIE                                  : N/A
+            SRAM Other                                 : N/A
+        Channel Repair Pending                         : No
+        TPC Repair Pending                             : No
+        Unrepairable Memory                            : N/A
+    Retired Pages
+        Single Bit ECC                                 : N/A
+        Double Bit ECC                                 : N/A
+        Pending Page Blacklist                         : N/A
+    Remapped Rows                                      : N/A
+    Temperature
+        GPU Current Temp                               : 35 C
+        GPU T.Limit Temp                               : N/A
+        GPU Shutdown Temp                              : 98 C
+        GPU Slowdown Temp                              : 95 C
+        GPU Max Operating Temp                         : 93 C
+        GPU Target Temperature                         : 83 C
+        Memory Current Temp                            : N/A
+        Memory Max Operating Temp                      : N/A
+    GPU Power Readings
+        Average Power Draw                             : 104.10 W
+        Instantaneous Power Draw                       : 104.02 W
+        Current Power Limit                            : 370.00 W
+        Requested Power Limit                          : 370.00 W
+        Default Power Limit                            : 370.00 W
+        Min Power Limit                                : 100.00 W
+        Max Power Limit                                : 390.00 W
+    GPU Memory Power Readings 
+        Average Power Draw                             : N/A
+        Instantaneous Power Draw                       : N/A
+    Module Power Readings
+        Average Power Draw                             : N/A
+        Instantaneous Power Draw                       : N/A
+        Current Power Limit                            : N/A
+        Requested Power Limit                          : N/A
+        Default Power Limit                            : N/A
+        Min Power Limit                                : N/A
+        Max Power Limit                                : N/A
+    Power Smoothing                                    : N/A
+    Workload Power Profiles
+        Requested Profiles                             : N/A
+        Enforced Profiles                              : N/A
+    Clocks
+        Graphics                                       : 225 MHz
+        SM                                             : 225 MHz
+        Memory                                         : 9501 MHz
+        Video                                          : 1275 MHz
+    Applications Clocks
+        Graphics                                       : N/A
+        Memory                                         : N/A
+    Default Applications Clocks
+        Graphics                                       : N/A
+        Memory                                         : N/A
+    Deferred Clocks
+        Memory                                         : N/A
+    Max Clocks
+        Graphics                                       : 2115 MHz
+        SM                                             : 2115 MHz
+        Memory                                         : 9751 MHz
+        Video                                          : 1965 MHz
+    Max Customer Boost Clocks
+        Graphics                                       : N/A
+    Clock Policy
+        Auto Boost                                     : N/A
+        Auto Boost Default                             : N/A
+    Fabric
+        State                                          : N/A
+        Status                                         : N/A
+        CliqueId                                       : N/A
+        ClusterUUID                                    : N/A
+        Health
+            Summary                                    : N/A
+            Bandwidth                                  : N/A
+            Route Recovery in progress                 : N/A
+            Route Unhealthy                            : N/A
+            Access Timeout Recovery                    : N/A
+            Incorrect Configuration                    : N/A
+            Partition Assigned                         : N/A
+    Processes
+        GPU instance ID                   : N/A
+        Compute instance ID               : N/A
+        Process ID                        : 1061
+            Type                          : C
+            Name                          : llama-server
+            Used GPU Memory               : 19156 MiB
+    Capabilities
+        EGM                                            : disabled
+
+
+########## 2. LSPCI -VV 45:00.0 (BAR con dimensioni reali) ##########
+
+NOTA: BAR1 = Region 1: 64M reali a 0xc4000000 (64-bit prefetchable),
+ridimensionato da 256M nativi a 64M via Resizable BAR per rientrare
+nella finestra prefetch 32-bit del firmware T2 (c1700000-cf6fffff, 224M).
+resource1_resize sysfs = 000000000000ffc0 (supporto 64M..32G).
+
+45:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3090] (rev a1) (prog-if 00 [VGA controller])
+	Subsystem: Gigabyte Technology Co., Ltd Device 4039
+	Physical Slot: 1-4
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+	Latency: 0
+	Interrupts: pin B routed to IRQ 17
+	IOMMU group: 1
+	Region 0: Memory at 82000000 (32-bit, non-prefetchable) [size=16M]
+	Region 1: Memory at c4000000 (64-bit, prefetchable) [size=64M]
+	Region 3: Memory at c2000000 (64-bit, prefetchable) [size=32M]
+	Region 5: I/O ports at 7000 [size=128]
+	Expansion ROM at 83000000 [virtual] [disabled] [size=512K]
+	Capabilities: [60] Power Management version 3
+		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0+,D1-,D2-,D3hot+,D3cold-)
+		Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
+	Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
+		Address: 0000000000000000  Data: 0000
+	Capabilities: [78] Express (v2) Legacy Endpoint, IntMsgNum 0
+		DevCap:	MaxPayload 256 bytes, PhantFunc 0, Latency L0s unlimited, L1 <64us
+			ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset+ TEE-IO-
+		DevCtl:	CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
+			RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+ FLReset-
+			MaxPayload 128 bytes, MaxReadReq 512 bytes
+		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+		LnkCap:	Port #0, Speed 16GT/s, Width x16, ASPM L0s L1, Exit Latency L0s <1us, L1 <16us
+			ClockPM+ Surprise- LLActRep- BwNot- ASPMOptComp+
+		LnkCtl:	ASPM Disabled; RCB 64 bytes, LnkDisable- CommClk+
+			ExtSynch- ClockPM+ AutWidDis- BWInt- AutBWInt- FltModeDis-
+		LnkSta:	Speed 16GT/s, Width x4 (downgraded)
+			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+		DevCap2: Completion Timeout: Range AB, TimeoutDis+ NROPrPrP- LTR+
+			 10BitTagComp+ 10BitTagReq+ OBFF Via message, ExtFmt- EETLPPrefix-
+			 EmergencyPowerReduction Not Supported, EmergencyPowerReductionInit-
+			 FRS-
+			 AtomicOpsCap: 32bit- 64bit- 128bitCAS-
+		DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-
+			 AtomicOpsCtl: ReqEn-
+			 IDOReq- IDOCompl- LTR+ EmergencyPowerReductionReq-
+			 10BitTagReq- OBFF Disabled, EETLPPrefixBlk-
+		LnkCap2: Supported Link Speeds: 2.5-16GT/s, Crosslink- Retimer+ 2Retimers+ DRS-
+		LnkCtl2: Target Link Speed: 16GT/s, EnterCompliance- SpeedDis-
+			 Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
+			 Compliance Preset/De-emphasis: -6dB de-emphasis, 0dB preshoot
+		LnkSta2: Current De-emphasis Level: -3.5dB, EqualizationComplete+ EqualizationPhase1+
+			 EqualizationPhase2+ EqualizationPhase3+ LinkEqualizationRequest-
+			 Retimer- 2Retimers- CrosslinkRes: unsupported, FltMode-
+	Capabilities: [b4] Vendor Specific Information: Len=14 <?>
+	Capabilities: [100 v1] Virtual Channel
+		Caps:	LPEVC=0 RefClk=100ns PATEntryBits=1
+		Arb:	Fixed- WRR32- WRR64- WRR128-
+		Ctrl:	ArbSelect=Fixed
+		Status:	InProgress-
+		VC0:	Caps:	PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
+			Arb:	Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
+			Ctrl:	Enable+ ID=0 ArbSelect=Fixed TC/VC=ff
+			Status:	NegoPending- InProgress-
+	Capabilities: [250 v1] Latency Tolerance Reporting
+		Max snoop latency: 34326183936ns
+		Max no snoop latency: 34326183936ns
+	Capabilities: [258 v1] L1 PM Substates
+		L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2+ ASPM_L1.1+ L1_PM_Substates+
+			  PortCommonModeRestoreTime=255us PortTPowerOnTime=10us
+		L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
+			   T_CommonMode=0us LTR1.2_Threshold=0ns
+		L1SubCtl2: T_PwrOn=10us
+	Capabilities: [128 v1] Power Budgeting <?>
+	Capabilities: [420 v2] Advanced Error Reporting
+		UESta:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
+			ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
+			PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
+		UEMsk:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
+			ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
+			PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
+		UESvrt:	DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+
+			ECRC- UnsupReq- ACSViol- UncorrIntErr+ BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
+			PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
+		CESta:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr- CorrIntErr- HeaderOF-
+		CEMsk:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+ CorrIntErr- HeaderOF+
+		AERCap:	First Error Pointer: 00, ECRCGenCap- ECRCGenEn- ECRCChkCap- ECRCChkEn-
+			MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLogCap-
+		HeaderLog: 40000001 00000001 8a000080 f7f7f7f7
+	Capabilities: [600 v1] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
+	Capabilities: [900 v1] Secondary PCI Express
+		LnkCtl3: LnkEquIntrruptEn- PerformEqu-
+		LaneErrStat: 0
+	Capabilities: [bb0 v1] Physical Resizable BAR
+		BAR 0: current size: 16MB, supported: 16MB
+		BAR 1: current size: 64MB, supported: 64MB 128MB 256MB 512MB 1GB 2GB 4GB 8GB 16GB 32GB
+		BAR 3: current size: 32MB, supported: 32MB
+	Capabilities: [c1c v1] Physical Layer 16.0 GT/s
+		Phy16Sta: EquComplete+ EquPhase1+ EquPhase2+ EquPhase3+ LinkEquRequest-
+	Capabilities: [d00 v1] Lane Margining at the Receiver
+		PortCap: Uses Driver+
+		PortSta: MargReady+ MargSoftReady+
+	Capabilities: [e00 v1] Data Link Feature <?>
+	Kernel driver in use: nvidia
+	Kernel modules: nouveau, nvidia_drm, nvidia
+
+
+########## 3. DMESG: ALLOCAZIONE FINESTRA PCI/BAR ##########
+
+Cronologia: alla prima enumerazione (t=10.28s) BAR1 richiede 256M ->
+'can't assign; no space'. Lo script egpu-attach.sh (egpu.service) riduce
+BAR1 a 64M via /sys resource1_resize; al rescan (t=17.6s) tutte le BAR
+vengono assegnate dentro la finestra 32-bit del bridge 44:00.0
+(mem 0xc2000000-0xc7ffffff 64bit pref):
+
+[    0.303464] pci 0000:7e:00.0: BAR 1 [mem 0x8fb40000-0x8fb40fff]
+[   10.270135] pci 0000:44:00.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   10.270200] pci 0000:44:00.0: PCI bridge to [bus 00]
+[   10.270219] pci 0000:44:00.0:   bridge window [io  0x0000-0x0fff]
+[   10.270229] pci 0000:44:00.0:   bridge window [mem 0x00000000-0x000fffff]
+[   10.270256] pci 0000:44:00.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[   10.270307] pci 0000:44:00.0: enabling Extended Tags
+[   10.270620] pci 0000:44:00.0: supports D1 D2
+[   10.270625] pci 0000:44:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   10.272817] pci 0000:44:00.0: Adding to iommu group 1
+[   10.273038] pci 0000:44:01.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   10.273103] pci 0000:44:01.0: PCI bridge to [bus 00]
+[   10.273121] pci 0000:44:01.0:   bridge window [io  0x0000-0x0fff]
+[   10.273131] pci 0000:44:01.0:   bridge window [mem 0x00000000-0x000fffff]
+[   10.273157] pci 0000:44:01.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[   10.273191] pci 0000:44:01.0: enabling Extended Tags
+[   10.273494] pci 0000:44:01.0: supports D1 D2
+[   10.273500] pci 0000:44:01.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   10.274177] pci 0000:44:01.0: Adding to iommu group 1
+[   10.274374] pci 0000:44:02.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   10.274437] pci 0000:44:02.0: PCI bridge to [bus 00]
+[   10.274455] pci 0000:44:02.0:   bridge window [io  0x0000-0x0fff]
+[   10.274466] pci 0000:44:02.0:   bridge window [mem 0x00000000-0x000fffff]
+[   10.274492] pci 0000:44:02.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[   10.274525] pci 0000:44:02.0: enabling Extended Tags
+[   10.274795] pci 0000:44:02.0: supports D1 D2
+[   10.274800] pci 0000:44:02.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   10.275267] pci 0000:44:02.0: Adding to iommu group 1
+[   10.275449] pci 0000:44:03.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   10.275511] pci 0000:44:03.0: PCI bridge to [bus 00]
+[   10.275527] pci 0000:44:03.0:   bridge window [io  0x0000-0x0fff]
+[   10.275536] pci 0000:44:03.0:   bridge window [mem 0x00000000-0x000fffff]
+[   10.275562] pci 0000:44:03.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[   10.275595] pci 0000:44:03.0: enabling Extended Tags
+[   10.275862] pci 0000:44:03.0: supports D1 D2
+[   10.275866] pci 0000:44:03.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   10.276451] pci 0000:44:03.0: Adding to iommu group 1
+[   10.276637] pci 0000:44:04.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   10.276699] pci 0000:44:04.0: PCI bridge to [bus 00]
+[   10.276716] pci 0000:44:04.0:   bridge window [io  0x0000-0x0fff]
+[   10.276725] pci 0000:44:04.0:   bridge window [mem 0x00000000-0x000fffff]
+[   10.276750] pci 0000:44:04.0:   bridge window [mem 0x00000000-0x000fffff 64bit pref]
+[   10.276783] pci 0000:44:04.0: enabling Extended Tags
+[   10.277049] pci 0000:44:04.0: supports D1 D2
+[   10.277052] pci 0000:44:04.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   10.279586] pci 0000:44:04.0: Adding to iommu group 1
+[   10.279784] pci 0000:44:00.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[   10.279804] pci 0000:44:01.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[   10.279823] pci 0000:44:02.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[   10.279841] pci 0000:44:03.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[   10.279858] pci 0000:44:04.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[   10.281222] pci 0000:45:00.0: [10de:2204] type 00 class 0x030000 PCIe Legacy Endpoint
+[   10.281345] pci 0000:45:00.0: BAR 0 [mem 0x00000000-0x00ffffff]
+[   10.281362] pci 0000:45:00.0: BAR 1 [mem 0x00000000-0x0fffffff 64bit pref]
+[   10.281376] pci 0000:45:00.0: BAR 3 [mem 0x00000000-0x01ffffff 64bit pref]
+[   10.281386] pci 0000:45:00.0: BAR 5 [io  0x0000-0x007f]
+[   10.281396] pci 0000:45:00.0: ROM [mem 0x00000000-0x0007ffff pref]
+[   10.281670] pci 0000:45:00.0: PME# supported from D0 D3hot
+[   10.282047] pci 0000:45:00.0: 8.000 Gb/s available PCIe bandwidth, limited by 2.5 GT/s PCIe x4 link at 0000:07:04.0 (capable of 252.048 Gb/s with 16.0 GT/s PCIe x16 link)
+[   10.283670] pci 0000:45:00.0: Adding to iommu group 1
+[   10.283699] pci 0000:45:00.0: vgaarb: bridge control possible
+[   10.283705] pci 0000:45:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+[   10.285207] pci 0000:44:00.0: PCI bridge to [bus 45-7b]
+[   10.287377] pci 0000:44:01.0: PCI bridge to [bus 46-7b]
+[   10.287784] pci 0000:44:02.0: PCI bridge to [bus 47-7b]
+[   10.288868] pci 0000:44:03.0: PCI bridge to [bus 59-7b]
+[   10.290233] pci 0000:44:04.0: PCI bridge to [bus 6b-7b]
+[   10.290325] pci 0000:44:01.0: disabling bridge window [mem 0x00000000-0x000fffff 64bit pref] to [bus 46] (unused)
+[   10.290339] pci 0000:44:02.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 47-58] add_size 200000 add_align 100000
+[   10.290353] pci 0000:44:02.0: bridge window [mem 0x00100000-0x000fffff] to [bus 47-58] add_size 200000 add_align 100000
+[   10.290365] pci 0000:44:03.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 59-6a] add_size 200000 add_align 100000
+[   10.290376] pci 0000:44:03.0: bridge window [mem 0x00100000-0x000fffff] to [bus 59-6a] add_size 200000 add_align 100000
+[   10.290387] pci 0000:44:04.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 6b-7b] add_size 200000 add_align 100000
+[   10.290398] pci 0000:44:04.0: bridge window [mem 0x00100000-0x000fffff] to [bus 6b-7b] add_size 200000 add_align 100000
+[   10.290586] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: can't assign; no space
+[   10.290594] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: failed to assign
+[   10.290602] pci 0000:44:00.0: bridge window [mem size 0x01100000]: can't assign; no space
+[   10.290610] pci 0000:44:00.0: bridge window [mem size 0x01100000]: failed to assign
+[   10.290618] pci 0000:44:01.0: bridge window [mem size 0x00100000]: can't assign; no space
+[   10.290626] pci 0000:44:01.0: bridge window [mem size 0x00100000]: failed to assign
+[   10.290634] pci 0000:44:02.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.290642] pci 0000:44:02.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.290650] pci 0000:44:02.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.290658] pci 0000:44:02.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.290667] pci 0000:44:03.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.290674] pci 0000:44:03.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.290683] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.290690] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.290699] pci 0000:44:04.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.290706] pci 0000:44:04.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.290715] pci 0000:44:04.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.290722] pci 0000:44:04.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.290731] pci 0000:44:00.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290738] pci 0000:44:00.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290746] pci 0000:44:01.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290753] pci 0000:44:01.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290761] pci 0000:44:02.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290768] pci 0000:44:02.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290775] pci 0000:44:03.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290782] pci 0000:44:03.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290790] pci 0000:44:04.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290797] pci 0000:44:04.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290810] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: can't assign; no space
+[   10.290818] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: failed to assign
+[   10.290826] pci 0000:44:00.0: bridge window [mem size 0x01100000]: can't assign; no space
+[   10.290834] pci 0000:44:00.0: bridge window [mem size 0x01100000]: failed to assign
+[   10.290841] pci 0000:44:01.0: bridge window [mem size 0x00100000]: can't assign; no space
+[   10.290849] pci 0000:44:01.0: bridge window [mem size 0x00100000]: failed to assign
+[   10.290857] pci 0000:44:00.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290864] pci 0000:44:00.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290872] pci 0000:44:01.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290879] pci 0000:44:01.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290886] pci 0000:44:02.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290894] pci 0000:44:02.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290901] pci 0000:44:03.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290908] pci 0000:44:03.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290916] pci 0000:44:04.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.290923] pci 0000:44:04.0: bridge window [io  size 0x1000]: failed to assign
+[   10.290931] pci 0000:44:04.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.290938] pci 0000:44:04.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.290946] pci 0000:44:04.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.290954] pci 0000:44:04.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.290962] pci 0000:44:03.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.290970] pci 0000:44:03.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.290978] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.290986] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.290994] pci 0000:44:02.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.291001] pci 0000:44:02.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.291009] pci 0000:44:02.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.291017] pci 0000:44:02.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.291035] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: can't assign; no space
+[   10.291043] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: failed to assign
+[   10.291053] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: can't assign; no space
+[   10.291061] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: failed to assign
+[   10.291070] pci 0000:45:00.0: BAR 0 [mem size 0x01000000]: can't assign; no space
+[   10.291078] pci 0000:45:00.0: BAR 0 [mem size 0x01000000]: failed to assign
+[   10.291085] pci 0000:45:00.0: ROM [mem size 0x00080000 pref]: can't assign; no space
+[   10.291094] pci 0000:45:00.0: ROM [mem size 0x00080000 pref]: failed to assign
+[   10.291118] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: can't assign; no space
+[   10.291126] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: failed to assign
+[   10.291137] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: can't assign; no space
+[   10.291145] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: failed to assign
+[   10.291153] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: can't assign; no space
+[   10.291161] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: failed to assign
+[   10.291170] pci 0000:45:00.0: BAR 0 [mem size 0x01000000]: can't assign; no space
+[   10.291177] pci 0000:45:00.0: BAR 0 [mem size 0x01000000]: failed to assign
+[   10.291200] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: can't assign; no space
+[   10.291207] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: failed to assign
+[   10.291215] pci 0000:45:00.0: ROM [mem size 0x00080000 pref]: can't assign; no space
+[   10.291223] pci 0000:45:00.0: ROM [mem size 0x00080000 pref]: failed to assign
+[   10.291233] pci 0000:44:00.0: PCI bridge to [bus 45]
+[   10.291306] pci 0000:44:01.0: PCI bridge to [bus 46]
+[   10.291337] pci 0000:44:02.0: PCI bridge to [bus 47-58]
+[   10.291368] pci 0000:44:03.0: PCI bridge to [bus 59-6a]
+[   10.291398] pci 0000:44:04.0: PCI bridge to [bus 6b-7b]
+[   10.291574] pci 0000:44:01.0: disabling bridge window [mem 0x00000000-0x000fffff 64bit pref disabled] to [bus 46] (unused)
+[   10.291587] pci 0000:44:02.0: bridge window [mem size 0x00000000 64bit pref] to [bus 47-58] add_size 200000 add_align 100000
+[   10.291600] pci 0000:44:02.0: bridge window [mem size 0x00000000] to [bus 47-58] add_size 200000 add_align 100000
+[   10.291611] pci 0000:44:03.0: bridge window [mem size 0x00000000 64bit pref] to [bus 59-6a] add_size 200000 add_align 100000
+[   10.291621] pci 0000:44:03.0: bridge window [mem size 0x00000000] to [bus 59-6a] add_size 200000 add_align 100000
+[   10.291632] pci 0000:44:04.0: bridge window [mem size 0x00000000 64bit pref] to [bus 6b-7b] add_size 200000 add_align 100000
+[   10.291642] pci 0000:44:04.0: bridge window [mem size 0x00000000] to [bus 6b-7b] add_size 200000 add_align 100000
+[   10.291950] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: can't assign; no space
+[   10.291958] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: failed to assign
+[   10.291967] pci 0000:44:00.0: bridge window [mem 0x89000000-0x8a0fffff]: assigned
+[   10.291976] pci 0000:44:01.0: bridge window [mem 0x8a100000-0x8a1fffff]: assigned
+[   10.291985] pci 0000:44:02.0: bridge window [mem 0x8a200000-0x8a3fffff]: assigned
+[   10.291994] pci 0000:44:02.0: bridge window [mem 0x8a400000-0x8a5fffff 64bit pref]: assigned
+[   10.292004] pci 0000:44:03.0: bridge window [mem 0x8a600000-0x8a7fffff]: assigned
+[   10.292013] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.292021] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.292030] pci 0000:44:04.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.292038] pci 0000:44:04.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.292047] pci 0000:44:04.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.292055] pci 0000:44:04.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.292063] pci 0000:44:00.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292070] pci 0000:44:00.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292077] pci 0000:44:01.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292085] pci 0000:44:01.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292092] pci 0000:44:02.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292099] pci 0000:44:02.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292106] pci 0000:44:03.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292113] pci 0000:44:03.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292121] pci 0000:44:04.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292128] pci 0000:44:04.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292137] pci 0000:44:00.0: bridge window [mem 0x89000000-0x8a0fffff]: releasing
+[   10.292145] pci 0000:44:01.0: bridge window [mem 0x8a100000-0x8a1fffff]: releasing
+[   10.292154] pci 0000:44:02.0: bridge window [mem 0x8a200000-0x8a3fffff]: releasing
+[   10.292161] pci 0000:44:02.0: bridge window [mem 0x8a400000-0x8a5fffff 64bit pref]: releasing
+[   10.292170] pci 0000:44:03.0: bridge window [mem 0x8a600000-0x8a7fffff]: releasing
+[   10.292182] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: can't assign; no space
+[   10.292190] pci 0000:44:00.0: bridge window [mem size 0x12000000 64bit pref]: failed to assign
+[   10.292198] pci 0000:44:00.0: bridge window [mem 0x89000000-0x8a0fffff]: assigned
+[   10.292207] pci 0000:44:01.0: bridge window [mem 0x8a100000-0x8a1fffff]: assigned
+[   10.292216] pci 0000:44:00.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292223] pci 0000:44:00.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292231] pci 0000:44:01.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292238] pci 0000:44:01.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292245] pci 0000:44:02.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292252] pci 0000:44:02.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292259] pci 0000:44:03.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292266] pci 0000:44:03.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292274] pci 0000:44:04.0: bridge window [io  size 0x1000]: can't assign; no space
+[   10.292281] pci 0000:44:04.0: bridge window [io  size 0x1000]: failed to assign
+[   10.292298] pci 0000:44:04.0: bridge window [mem 0x8a200000-0x8a3fffff]: assigned
+[   10.292308] pci 0000:44:04.0: bridge window [mem 0x8a400000-0x8a5fffff 64bit pref]: assigned
+[   10.292318] pci 0000:44:03.0: bridge window [mem 0x8a600000-0x8a7fffff]: assigned
+[   10.292328] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.292335] pci 0000:44:03.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.292344] pci 0000:44:02.0: bridge window [mem size 0x00200000]: can't assign; no space
+[   10.292352] pci 0000:44:02.0: bridge window [mem size 0x00200000]: failed to assign
+[   10.292361] pci 0000:44:02.0: bridge window [mem size 0x00200000 64bit pref]: can't assign; no space
+[   10.292369] pci 0000:44:02.0: bridge window [mem size 0x00200000 64bit pref]: failed to assign
+[   10.292387] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: can't assign; no space
+[   10.292395] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: failed to assign
+[   10.292404] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: can't assign; no space
+[   10.292413] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: failed to assign
+[   10.292422] pci 0000:45:00.0: BAR 0 [mem 0x89000000-0x89ffffff]: assigned
+[   10.292438] pci 0000:45:00.0: ROM [mem 0x8a000000-0x8a07ffff pref]: assigned
+[   10.292463] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: can't assign; no space
+[   10.292470] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: failed to assign
+[   10.292479] pci 0000:45:00.0: BAR 0 [mem 0x89000000-0x89ffffff]: releasing
+[   10.292487] pci 0000:45:00.0: ROM [mem 0x8a000000-0x8a07ffff pref]: releasing
+[   10.292506] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: can't assign; no space
+[   10.292514] pci 0000:45:00.0: BAR 1 [mem size 0x10000000 64bit pref]: failed to assign
+[   10.292523] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: can't assign; no space
+[   10.292531] pci 0000:45:00.0: BAR 3 [mem size 0x02000000 64bit pref]: failed to assign
+[   10.292540] pci 0000:45:00.0: BAR 0 [mem 0x89000000-0x89ffffff]: assigned
+[   10.292569] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: can't assign; no space
+[   10.292576] pci 0000:45:00.0: BAR 5 [io  size 0x0080]: failed to assign
+[   10.292585] pci 0000:45:00.0: ROM [mem 0x8a080000-0x8a0fffff pref]: assigned
+[   10.292596] pci 0000:44:00.0: PCI bridge to [bus 45]
+[   10.292611] pci 0000:44:00.0:   bridge window [mem 0x89000000-0x8a0fffff]
+[   10.292665] pci 0000:44:01.0: PCI bridge to [bus 46]
+[   10.292680] pci 0000:44:01.0:   bridge window [mem 0x8a100000-0x8a1fffff]
+[   10.292704] pci 0000:44:02.0: PCI bridge to [bus 47-58]
+[   10.292735] pci 0000:44:03.0: PCI bridge to [bus 59-6a]
+[   10.292749] pci 0000:44:03.0:   bridge window [mem 0x8a600000-0x8a7fffff]
+[   10.292773] pci 0000:44:04.0: PCI bridge to [bus 6b-7b]
+[   10.292787] pci 0000:44:04.0:   bridge window [mem 0x8a200000-0x8a3fffff]
+[   10.292800] pci 0000:44:04.0:   bridge window [mem 0x8a400000-0x8a5fffff 64bit pref]
+[   10.293818] pcieport 0000:44:00.0: enabling device (0000 -> 0002)
+[   10.295015] pcieport 0000:44:01.0: enabling device (0000 -> 0002)
+[   10.295972] pcieport 0000:44:02.0: pciehp: Slot #2 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+ Interlock- NoCompl+ IbPresDis- LLActRep+
+[   10.296567] pcieport 0000:44:03.0: enabling device (0000 -> 0002)
+[   10.297147] pcieport 0000:44:03.0: pciehp: Slot #3 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+ Interlock- NoCompl+ IbPresDis- LLActRep+
+[   10.297797] pcieport 0000:44:04.0: enabling device (0000 -> 0002)
+[   10.298133] pcieport 0000:44:04.0: pciehp: Slot #4 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+ Interlock- NoCompl+ IbPresDis- LLActRep+
+[   10.298984] pci 0000:45:00.1: D0 power state depends on 0000:45:00.0
+[   10.338749] input: HDA NVidia HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:01.1/0000:06:00.0/0000:07:04.0/0000:43:00.0/0000:44:00.0/0000:45:00.1/sound/card2/input18
+[   10.338869] input: HDA NVidia HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:01.1/0000:06:00.0/0000:07:04.0/0000:43:00.0/0000:44:00.0/0000:45:00.1/sound/card2/input19
+[   10.338958] input: HDA NVidia HDMI/DP,pcm=8 as /devices/pci0000:00/0000:00:01.1/0000:06:00.0/0000:07:04.0/0000:43:00.0/0000:44:00.0/0000:45:00.1/sound/card2/input20
+[   10.339017] input: HDA NVidia HDMI/DP,pcm=9 as /devices/pci0000:00/0000:00:01.1/0000:06:00.0/0000:07:04.0/0000:43:00.0/0000:44:00.0/0000:45:00.1/sound/card2/input21
+[   17.596617] pci 0000:08:00.0: BAR 1 [mem 0x81940000-0x81940fff]
+[   17.599119] pci 0000:44:00.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   17.599180] pci 0000:44:00.0: PCI bridge to [bus 45]
+[   17.599193] pci 0000:44:00.0:   bridge window [mem 0x89000000-0x8a0fffff]
+[   17.599567] pci 0000:44:00.0: supports D1 D2
+[   17.599568] pci 0000:44:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   17.600151] pci 0000:44:00.0: Adding to iommu group 1
+[   17.600327] pci 0000:44:01.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   17.600372] pci 0000:44:01.0: PCI bridge to [bus 46]
+[   17.600406] pci 0000:44:01.0:   bridge window [mem 0x8a100000-0x8a1fffff]
+[   17.600672] pci 0000:44:01.0: supports D1 D2
+[   17.600673] pci 0000:44:01.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   17.601142] pci 0000:44:01.0: Adding to iommu group 1
+[   17.601277] pci 0000:44:02.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   17.601325] pci 0000:44:02.0: PCI bridge to [bus 47-58]
+[   17.601628] pci 0000:44:02.0: supports D1 D2
+[   17.601629] pci 0000:44:02.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   17.602237] pci 0000:44:02.0: Adding to iommu group 1
+[   17.602379] pci 0000:44:03.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   17.602425] pci 0000:44:03.0: PCI bridge to [bus 59-6a]
+[   17.602461] pci 0000:44:03.0:   bridge window [mem 0x8a600000-0x8a7fffff]
+[   17.602699] pci 0000:44:03.0: supports D1 D2
+[   17.602700] pci 0000:44:03.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   17.603255] pci 0000:44:03.0: Adding to iommu group 1
+[   17.603394] pci 0000:44:04.0: [8086:5786] type 01 class 0x060400 PCIe Switch Downstream Port
+[   17.603440] pci 0000:44:04.0: PCI bridge to [bus 6b-7b]
+[   17.603454] pci 0000:44:04.0:   bridge window [mem 0x8a200000-0x8a3fffff]
+[   17.603472] pci 0000:44:04.0:   bridge window [mem 0x8a400000-0x8a5fffff 64bit pref]
+[   17.603675] pci 0000:44:04.0: supports D1 D2
+[   17.603676] pci 0000:44:04.0: PME# supported from D0 D1 D2 D3hot D3cold
+[   17.604236] pci 0000:44:04.0: Adding to iommu group 1
+[   17.604597] pci 0000:45:00.0: [10de:2204] type 00 class 0x030000 PCIe Legacy Endpoint
+[   17.604676] pci 0000:45:00.0: BAR 0 [mem 0x89000000-0x89ffffff]
+[   17.604681] pci 0000:45:00.0: BAR 1 [mem 0x00000000-0x03ffffff 64bit pref]
+[   17.604687] pci 0000:45:00.0: BAR 3 [mem 0x00000000-0x01ffffff 64bit pref]
+[   17.604690] pci 0000:45:00.0: BAR 5 [io  0x0000-0x007f]
+[   17.604693] pci 0000:45:00.0: ROM [mem 0x00000000-0x0007ffff pref]
+[   17.604874] pci 0000:45:00.0: PME# supported from D0 D3hot
+[   17.605201] pci 0000:45:00.0: 8.000 Gb/s available PCIe bandwidth, limited by 2.5 GT/s PCIe x4 link at 0000:07:04.0 (capable of 252.048 Gb/s with 16.0 GT/s PCIe x16 link)
+[   17.605476] pci 0000:45:00.0: Adding to iommu group 1
+[   17.605482] pci 0000:45:00.0: vgaarb: bridge control possible
+[   17.605483] pci 0000:45:00.0: vgaarb: VGA device added: decodes=io+mem,owns=none,locks=none
+[   17.606138] pci 0000:44:00.0: PCI bridge to [bus 45]
+[   17.606778] pci 0000:44:01.0: PCI bridge to [bus 46]
+[   17.606871] pci 0000:44:02.0: PCI bridge to [bus 47-58]
+[   17.606987] pci 0000:44:03.0: PCI bridge to [bus 59-6a]
+[   17.607095] pci 0000:44:04.0: PCI bridge to [bus 6b-7b]
+[   17.630555] pci 0000:44:01.0: disabling bridge window [io  size 0x0000 disabled] to [bus 46] (unused)
+[   17.630557] pci 0000:44:01.0: disabling bridge window [mem size 0x00000000 64bit pref disabled] to [bus 46] (unused)
+[   17.630559] pci 0000:44:02.0: bridge window [io  size 0x0000] to [bus 47-58] add_size 1000
+[   17.630561] pci 0000:44:02.0: bridge window [mem size 0x00000000 64bit pref] to [bus 47-58] add_size 200000 add_align 100000
+[   17.630563] pci 0000:44:02.0: bridge window [mem size 0x00000000] to [bus 47-58] add_size 200000 add_align 100000
+[   17.630565] pci 0000:44:03.0: bridge window [io  size 0x0000] to [bus 59-6a] add_size 1000
+[   17.630567] pci 0000:44:03.0: bridge window [mem size 0x00000000 64bit pref] to [bus 59-6a] add_size 200000 add_align 100000
+[   17.630569] pci 0000:44:03.0: bridge window [mem 0x00100000-0x000fffff] to [bus 59-6a] add_size 200000 add_align 100000
+[   17.630571] pci 0000:44:04.0: bridge window [io  size 0x0000] to [bus 6b-7b] add_size 1000
+[   17.630572] pci 0000:44:04.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 6b-7b] add_size 200000 add_align 100000
+[   17.630574] pci 0000:44:04.0: bridge window [mem 0x00100000-0x000fffff] to [bus 6b-7b] add_size 200000 add_align 100000
+[   17.630645] pci 0000:08:00.0: BAR 1 [mem 0x83840000-0x83840fff]: assigned
+[   17.630695] pci 0000:44:00.0: bridge window [mem 0xc2000000-0xc7ffffff 64bit pref]: assigned
+[   17.630697] pci 0000:44:00.0: bridge window [mem 0x82000000-0x830fffff]: assigned
+[   17.630698] pci 0000:44:01.0: bridge window [mem 0x83100000-0x831fffff]: assigned
+[   17.630700] pci 0000:44:02.0: bridge window [mem 0x83200000-0x833fffff]: assigned
+[   17.630701] pci 0000:44:02.0: bridge window [mem 0xc1a00000-0xc1bfffff 64bit pref]: assigned
+[   17.630702] pci 0000:44:03.0: bridge window [mem 0x83400000-0x835fffff]: assigned
+[   17.630704] pci 0000:44:03.0: bridge window [mem 0xc1c00000-0xc1dfffff 64bit pref]: assigned
+[   17.630705] pci 0000:44:04.0: bridge window [mem 0x83600000-0x837fffff]: assigned
+[   17.630706] pci 0000:44:04.0: bridge window [mem 0xc1e00000-0xc1ffffff 64bit pref]: assigned
+[   17.630708] pci 0000:44:00.0: bridge window [io  0x7000-0x7fff]: assigned
+[   17.630709] pci 0000:44:02.0: bridge window [io  size 0x1000]: can't assign; no space
+[   17.630710] pci 0000:44:02.0: bridge window [io  size 0x1000]: failed to assign
+[   17.630712] pci 0000:44:03.0: bridge window [io  size 0x1000]: can't assign; no space
+[   17.630713] pci 0000:44:03.0: bridge window [io  size 0x1000]: failed to assign
+[   17.630714] pci 0000:44:04.0: bridge window [io  size 0x1000]: can't assign; no space
+[   17.630715] pci 0000:44:04.0: bridge window [io  size 0x1000]: failed to assign
+[   17.630717] pci 0000:44:00.0: bridge window [io  0x7000-0x7fff]: releasing
+[   17.630719] pci 0000:44:00.0: bridge window [io  0x7000-0x7fff]: assigned
+[   17.630720] pci 0000:44:04.0: bridge window [io  size 0x1000]: can't assign; no space
+[   17.630721] pci 0000:44:04.0: bridge window [io  size 0x1000]: failed to assign
+[   17.630722] pci 0000:44:03.0: bridge window [io  size 0x1000]: can't assign; no space
+[   17.630723] pci 0000:44:03.0: bridge window [io  size 0x1000]: failed to assign
+[   17.630724] pci 0000:44:02.0: bridge window [io  size 0x1000]: can't assign; no space
+[   17.630725] pci 0000:44:02.0: bridge window [io  size 0x1000]: failed to assign
+[   17.630728] pci 0000:45:00.0: BAR 1 [mem 0xc4000000-0xc7ffffff 64bit pref]: assigned
+[   17.630745] pci 0000:45:00.0: BAR 3 [mem 0xc2000000-0xc3ffffff 64bit pref]: assigned
+[   17.630761] pci 0000:45:00.0: BAR 0 [mem 0x82000000-0x82ffffff]: assigned
+[   17.630767] pci 0000:45:00.0: ROM [mem 0x83000000-0x8307ffff pref]: assigned
+[   17.630774] pci 0000:45:00.0: BAR 5 [io  0x7000-0x707f]: assigned
+[   17.630781] pci 0000:44:00.0: PCI bridge to [bus 45]
+[   17.630784] pci 0000:44:00.0:   bridge window [io  0x7000-0x7fff]
+[   17.630790] pci 0000:44:00.0:   bridge window [mem 0x82000000-0x830fffff]
+[   17.630795] pci 0000:44:00.0:   bridge window [mem 0xc2000000-0xc7ffffff 64bit pref]
+[   17.630819] pci 0000:44:01.0: PCI bridge to [bus 46]
+[   17.630826] pci 0000:44:01.0:   bridge window [mem 0x83100000-0x831fffff]
+[   17.630838] pci 0000:44:02.0: PCI bridge to [bus 47-58]
+[   17.630845] pci 0000:44:02.0:   bridge window [mem 0x83200000-0x833fffff]
+[   17.630850] pci 0000:44:02.0:   bridge window [mem 0xc1a00000-0xc1bfffff 64bit pref]
+[   17.630859] pci 0000:44:03.0: PCI bridge to [bus 59-6a]
+[   17.630865] pci 0000:44:03.0:   bridge window [mem 0x83400000-0x835fffff]
+[   17.630870] pci 0000:44:03.0:   bridge window [mem 0xc1c00000-0xc1dfffff 64bit pref]
+[   17.630878] pci 0000:44:04.0: PCI bridge to [bus 6b-7b]
+[   17.630885] pci 0000:44:04.0:   bridge window [mem 0x83600000-0x837fffff]
+[   17.630890] pci 0000:44:04.0:   bridge window [mem 0xc1e00000-0xc1ffffff 64bit pref]
+[   17.632447] pci 0000:45:00.1: D0 power state depends on 0000:45:00.0
+[   26.390821] pci 0000:44:00.0: enabling device (0002 -> 0003)
+[   26.390890] nvidia 0000:45:00.0: enabling device (0000 -> 0003)
+[   26.391020] nvidia 0000:45:00.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=none
+
+########## 4. CARICO REALE: INFERENZA LLM (llama-server, Qwen3.8-27B) ##########
+
+Modello: Qwen3.8-27B GGUF, interamente in VRAM (19.1 GiB / 24 GiB), 0 offload CPU/RAM.
+Richiesta: generazione 800 token (saggio 500 parole).
+
+Risultato timings llama-server:
+  prompt processing: 72 token @ 101.7 tok/s
+  generazione:       800 token @ 36.26 tok/s (22.0 s)
+
+Telemetria GPU durante il carico (nvidia-smi dmon, campioni ogni 2s):
+  colonne: gpu pwr(W) gtemp mtemp sm% mem% enc dec jpg ofa fb-MiB bar1-MiB ccpm mclk pclk
+# gpu    pwr  gtemp  mtemp     sm    mem    enc    dec    jpg    ofa   mclk   pclk     fb   bar1   ccpm 
+# Idx      W      C      C      %      %      %      %      %      %    MHz    MHz     MB     MB     MB 
+    0    104     35      -      0      0      0      0      0      0   9501    225  19162      4      0 
+    0    103     35      -      0      0      0      0      0      0   9501    225  19162      4      0 
+    0    103     35      -      0      0      0      0      0      0   9501   1290  19164      4      0 
+    0    352     44      -     97     88      0      0      0      0   9501   1695  19164      4      0 
+    0    354     45      -     98     88      0      0      0      0   9501   1695  19164      4      0 
+    0    353     46      -     97     87      0      0      0      0   9501   1695  19164      4      0 
+    0    354     46      -     97     87      0      0      0      0   9501   1695  19164      4      0 
+    0    355     46      -     98     88      0      0      0      0   9501   1695  19164      4      0 
+    0    355     46      -     97     87      0      0      0      0   9501   1695  19164      4      0 
+    0    355     47      -     98     88      0      0      0      0   9501   1695  19164      4      0 
+    0    353     46      -     97     87      0      0      0      0   9501   1680  19164      4      0 
+    0    348     46      -     98     88      0      0      0      0   9501   1680  19164      4      0 
+    0    351     47      -     98     88      0      0      0      0   9501   1695  19164      4      0 
+    0    349     47      -     97     87      0      0      0      0   9501   1680  19164      4      0 
+    0    145     40      -      0      0      0      0      0      0   9501   1980  19164      4      0 
+    0    122     38      -      0      0      0      0      0      0   9501   1785  19164      4      0 
+    0    122     38      -      0      0      0      0      0      0   9501   1785  19164      4      0 
+    0    122     38      -      0      0      0      0      0      0   9501   1785  19164      4      0 
+    0    122     38      -      0      0      0      0      0      0   9501   1785  19164      4      0 
+    0    122     38      -      0      0      0      0      0      0   9501   1785  19164      4      0 
+
+================================================================================
+ CONCLUSIONE: GPU pienamente operativa. BAR1 64M reale e mappato, nessun
+ accesso >4G (zona letale su T2), inferenza CUDA stabile sotto carico.
+================================================================================
