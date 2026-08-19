@@ -4,7 +4,7 @@
 **ORCID:** 0009-0003-3048-1044 — **Web of Science ResearcherID:** PKR-6753-2026
 **Registered Expert, European Commission** (ID: EX2026D1365471)
 **GitHub:** github.com/TelescaAntonio — **Google Scholar:** gj0WniUAAAAJ — **ResearchGate:** Antonio-Telesca-4
-**Date:** August 2026 — **Status:** Preprint (v1 draft)
+**Date:** August 2026 — **Status:** Preprint v1 — **DOI:** [10.5281/zenodo.22011607](https://doi.org/10.5281/zenodo.22011607)
 
 ---
 
@@ -113,10 +113,10 @@ The long-standing inability of T2-equipped Intel Macs to host modern NVIDIA eGPU
 ## References
 
 [1] t2linux, "RTX 3060 eGPU via Thunderbolt 3 (Alpine Ridge): BAR1 not assigned — prefetchable memory window disabled on bridge," GitHub, t2linux/T2-Debian-and-Ubuntu-Kernel, issue #189 (open). https://github.com/t2linux/T2-Debian-and-Ubuntu-Kernel/issues/189
-[2] A. Telesca, "t2-egpu-nvidia: NVIDIA eGPU enablement on Apple T2 Macs," GitHub (github.com/TelescaAntonio) / Zenodo, 2026. DOI: [to be minted on release]
+[2] A. Telesca, "t2-egpu-nvidia: NVIDIA eGPU enablement on Apple T2 Macs," GitHub (github.com/TelescaAntonio) / Zenodo, 2026. https://github.com/TelescaAntonio/t2-egpu-nvidia
 [3] PCI-SIG, *PCI Express Base Specification*, Resizable BAR Extended Capability.
 [4] NVIDIA, "Open GPU kernel modules — GSP firmware requirements," documentation.
 [5] llama.cpp, ggml-org, 2026.
 
 ---
-*Draft v1 — complete text; pending author review. Private until author approval.*
+*Preprint v1 — published on Zenodo, DOI 10.5281/zenodo.22011607. Companion code: github.com/TelescaAntonio/t2-egpu-nvidia*

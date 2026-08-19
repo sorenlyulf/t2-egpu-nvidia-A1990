@@ -5,7 +5,7 @@
 Author: **Antonio Telesca** — IRST Institute ([irst-institute.eu](https://irst-institute.eu))
 ORCID: [0009-0003-3048-1044](https://orcid.org/0009-0003-3048-1044) · Web of Science ResearcherID: PKR-6753-2026 · Registered Expert, European Commission (ID: EX2026D1365471)
 
-Companion repository for the paper: *"Circumventing Apple T2 Thunderbolt MMIO Restrictions: Enabling Large-BAR NVIDIA GPUs on Intel Macs via Resizable BAR Windowing"* (2026). DOI: to be added on Zenodo release.
+Companion repository for the paper: *"Circumventing Apple T2 Thunderbolt MMIO Restrictions: Enabling Large-BAR NVIDIA GPUs on Intel Macs via Resizable BAR Windowing"* (2026). DOI: [10.5281/zenodo.22011607](https://doi.org/10.5281/zenodo.22011607)
 
 ---
 
@@ -77,7 +77,7 @@ Verify: `systemctl status egpu.service`, `nvidia-smi`, and `lspci -vs <GPU> | gr
             Large-BAR NVIDIA GPUs on Intel Macs via Resizable BAR Windowing},
   year   = {2026},
   publisher = {Zenodo},
-  note   = {DOI to be added on release}
+  doi    = {10.5281/zenodo.22011607}
 }
 ```
 
