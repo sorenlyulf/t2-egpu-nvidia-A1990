@@ -1,0 +1,38 @@
+t2-egpu-nvidia — NVIDIA eGPU enablement on Apple T2 Macs
+Copyright (C) 2026 Antonio Telesca, IRST Institute (irst-institute.eu)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+------------------------------------------------------------------------
+ADDITIONAL NOTICES (informative — these do not add restrictions to,
+or modify the terms of, the GNU AGPL v3):
+
+- Citation: if you use this software in academic or scientific work,
+  please cite the associated paper:
+  A. Telesca, "Circumventing Apple T2 Thunderbolt MMIO Restrictions",
+  2026, DOI: 10.5281/zenodo.22011607.
+  A machine-readable citation is provided in CITATION.cff.
+
+- Network use: per AGPL Section 13, if you run a modified version of
+  this software as part of a service offered over a network, you must
+  make the complete corresponding source code available to its users.
+
+- Commercial licensing: organizations wishing to incorporate this
+  software into closed-source or commercial products may obtain a
+  separate commercial license. Contact: antonio.telesca@irst-institute.eu
+
+- SAFETY DISCLAIMER: incorrect use of the BAR-manipulation procedures in
+  this repository can hard-hang the machine without logs. Use entirely
+  at your own risk. The Author and IRST Institute accept no liability
+  for hardware damage or data loss.

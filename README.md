@@ -85,5 +85,6 @@ Verify: `systemctl status egpu.service`, `nvidia-smi`, and `lspci -vs <GPU> | gr
 
 **GNU AGPL-3.0** — see [LICENSE](LICENSE).
 
-- You may use, study, modify and redistribute this software, but **any derivative — including software offered as a network service — must remain open source under the same license**, retaining the copyright of Antonio Telesca / IRST Institute and citing the paper (DOI [10.5281/zenodo.22011607](https://doi.org/10.5281/zenodo.22011607)).
+- You may use, study, modify and redistribute this software, but **any derivative — including software offered as a network service — must remain open source under the same license**, retaining the copyright notice of Antonio Telesca / IRST Institute. See [NOTICE](NOTICE) for details.
+- **Citation**: if you use this software in academic work, please cite the paper — A. Telesca, *"Circumventing Apple T2 Thunderbolt MMIO Restrictions"*, 2026, DOI [10.5281/zenodo.22011607](https://doi.org/10.5281/zenodo.22011607) (machine-readable form in [CITATION.cff](CITATION.cff)).
 - **Commercial / closed-source licensing** is available separately: contact antonio.telesca@irst-institute.eu.
