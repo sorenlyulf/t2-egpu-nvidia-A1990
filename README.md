@@ -11,7 +11,7 @@ Companion repository for the paper: *"Circumventing Apple T2 Thunderbolt MMIO Re
 
 ## TL;DR
 
-T2-equipped Intel Macs hard-hang (no panic, no log) when a Thunderbolt eGPU's BARs are accessed above the 4 GiB boundary — **even when firmware declares a 64-bit window** — and, independently, when the NVIDIA GSP firmware boots. This has kept modern NVIDIA eGPUs unusable on these machines since 2019 ([t2linux issue #189](https://github.com/t2linux/T2-Debian-and-Ubuntu-Kernel/issues/189)).
+T2-equipped Intel Macs hard-hang (no panic, no log) when a Thunderbolt eGPU's BARs are accessed above the 4 GiB boundary — **even when firmware declares a 64-bit window** — and, independently, when the NVIDIA GSP firmware boots. This is a long-standing limitation on several T2 machines, unresolved upstream ([t2linux issue #189](https://github.com/t2linux/T2-Debian-and-Ubuntu-Kernel/issues/189)). Note: some T2 models/topologies work with `pci=realloc` alone — this method targets the machines where that is not enough (like the MacBookPro16,1).
 
 **The fix (software-only):**
 1. Shrink BAR1 (VRAM aperture) to 64 MiB via PCIe **Resizable BAR** (`setpci`)
