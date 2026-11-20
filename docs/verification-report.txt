@@ -469,10 +469,11 @@ llama-server timings results (using LMStudio):
 tokensPerSecond: 22.208305906409
 timeToFirstTokenSec: 0.384945
 totalTimeSec: 40.369985
-promptTokensCount: 20GPU telemetry during load (nvidia-smi dmon, samples every 2s):
+promptTokensCount: 20
 predictedTokensCount: 889
 totalTokensCount: 909
 
+GPU telemetry during load (nvidia-smi dmon, samples every 2s):
 # gpu    pwr  gtemp  mtemp     sm    mem    enc    dec    jpg    ofa   mclk   pclk
 # Idx      W      C      C      %      %      %      %      %      %    MHz    MHz
     0    172     60      -     41     40      0      0      0      0   9501   1665
