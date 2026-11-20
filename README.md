@@ -27,7 +27,7 @@ sudo pacman -S nvidia-580xx-dkms nvidia-580xx-utils opencl-nvidia-580xx bolt
 sudo pacman -S lib32-nvidia-580xx-utils lib32-opencl-nvidia-580xx
 ```
 
-Validated version: **580.173.02**. Any branch must support `NVreg_EnableGpuFirmware=0`.
+Validated version: **580.196.07**. Any branch must support `NVreg_EnableGpuFirmware=0`.
 
 ### 2. Kernel cmdline
 
@@ -98,7 +98,7 @@ tail -50 /var/log/egpu-attach.log      # "===== eGPU ready ====="
 
 ## Validated configuration
 
-- MacBookPro15,1 (Intel i7-9750H, Apple T2), CachyOS Linux, kernel 7.3.4-1-cachyos, Limine, btrfs
+- MacBookPro 15,1 (Intel i7-9750H, Apple T2), CachyOS Linux, kernel 7.3.4-1-cachyos, Limine, btrfs
 - NVIDIA GeForce RTX 3080 Lite Hash Rate (GA102, VBIOS 94.02.71.40.AA), Thunderbolt 3 eGPU dock (Intel JHL7540 Titan Ridge 4C 2018)
 - Driver Version: 580.196.07, CUDA 13.0, bolt 0.9.11
 
