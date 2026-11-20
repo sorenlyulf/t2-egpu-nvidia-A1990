@@ -2,13 +2,12 @@
 **NVIDIA eGPU enablement on Apple T2 Intel Macs under Linux — Resizable BAR windowing method**
 
 I recently received an RTX 3080 from a friend who upgraded. However I run CachyOS on my T2 Macbook Pro, so I ran into the issue that is described in Antonio Telesca's paper and repo. After using his instructions exactly as described below, I was able to get my RTX 3080 working. Afterward I wasn't quite satasfied so I read everything again and did a little of my own research. I noticed when changing the script that my prefetchable window address started way sooner than what was described, allowing me to run my card with a 128MB aperture instead of 64MB, and it was stable. After some testing I found that not only was it very usable for agentic work flow, but you can use it for some gaming tasks as well. To go along with the changes to the original script I wrote a script and service file to bind audio to the card as a oneshot after startup. I did this to prevent any hang ups that may happen if the audio was bound at boot with the GPU itself. Every step is the same. FOLLOW THEM TO THE LETTER. The only changes are in the egpu-attach.sh script to resize BAR1 to 128MB instead of 64MB, and the terminal commands to install the egpu-audio.sh and the 99-egpu-audio.service.
-As far as I'm aware this will only work if you have a model A1990 MacBook Pro (15-inch, 2018/2019) and the starting address for the prefetchable window is cf700000. The prefetchable window is very important because if it starts after cf700000, this specific script file will not work and you should use the script from [TelescaAntonio/t2-egpu-nvidia](https://github.com/TelescaAntonio/t2-egpu-nvidia).
+As far as I'm aware this will only work if you have a model A1990 MacBook Pro (15-inch, 2018/2019) and the address for the prefetchable window is cf700000-dd6fffff. The prefetchable window is very important because if it starts after cf700000, this specific script file will not work and you should use the script from [TelescaAntonio/t2-egpu-nvidia](https://github.com/TelescaAntonio/t2-egpu-nvidia).
 
 # Installation guide
 
 Reference system: CachyOS (Arch-based), kernel linux-cachyos, Apple T2 Macbook Pro
-with base T2 Linux setup already done (t2linux kernel/firmware — separate prerequisite,
-see [t2linux wiki](https://wiki.t2linux.org)).
+with base T2 Linux setup already done (separate prerequisites. see [t2linux wiki](https://wiki.t2linux.org)).
 
 ## The two rules that keep your machine alive
 
