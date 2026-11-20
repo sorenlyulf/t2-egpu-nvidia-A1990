@@ -55,7 +55,7 @@ sudo boltctl enroll --policy auto <UUID>
 
 ```bash
 lspci -tv                                  # find GPU + upstream bridge
-lspci -vv -s 00:01.1 | grep Prefetchable   # root port window (try 00:01.0/1/2...)
+lspci -vv -s 00:01.2 | grep Prefetchable   # root port window (try 00:01.0/1/2...)
 ```
 
 Edit the variables at the top of `scripts/egpu-attach.sh` (GPU, AUD, BRIDGE,
