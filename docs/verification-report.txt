@@ -460,7 +460,7 @@ b9:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3080 Li
 [   85.741469] nvidia 0000:b9:00.0: [drm] fb1: nvidia-drmdrmfb frame buffer device
 
 
-########## 4. ACTUAL LOAD: LLM INFERENCE (llama-server, Qwen3.8-27B) ##########
+########## 4. ACTUAL LOAD: LLM INFERENCE (llama-server, ministral-3-14b) ##########
 
 Model: mistralai/ministral-3-14b-reasoning GGUF, entirely in VRAM (9.72 GiB / 10 GiB), 0 CPU/RAM offload.
 Request: 800-token generation (500-word essay) about bugs.
@@ -469,10 +469,12 @@ llama-server timings results (using LMStudio):
 tokensPerSecond: 22.208305906409
 timeToFirstTokenSec: 0.384945
 totalTimeSec: 40.369985
-
 promptTokensCount: 20GPU telemetry during load (nvidia-smi dmon, samples every 2s):
-predictedTokensCount: 889# gpu    pwr  gtemp  mtemp     sm    mem    enc    dec    jpg    ofa   mclk   pclk
-totalTokensCount: 909# Idx      W      C      C      %      %      %      %      %      %    MHz    MHz
+predictedTokensCount: 889
+totalTokensCount: 909
+
+# gpu    pwr  gtemp  mtemp     sm    mem    enc    dec    jpg    ofa   mclk   pclk
+# Idx      W      C      C      %      %      %      %      %      %    MHz    MHz
     0    172     60      -     41     40      0      0      0      0   9501   1665
     0    145     60      -     42     40      0      0      0      0   9251   1500
     0    137     60      -     33     32      0      0      0      0   9501   1620
