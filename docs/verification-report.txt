@@ -1,7 +1,7 @@
 ================================================================================
- VERIFICATION REPORT eGPU RTX 3080 su MacBookPro15,1 (Apple T2) - CachyOS Linux
+ VERIFICATION REPORT eGPU RTX 3080, MacBookPro15,1 (Apple T2) - CachyOS Linux
  Date: 2026-11-20 1:46 AM PST | Kernel: 7.3.4-1-cachyos | Driver NVIDIA: 580.196.07
- Enclosure: Thunderbolt 3 (Intel JHL7540 Titan Ridge 4C 2018) | LinkSta: PCIe x3.0 @ 2.5GT/s
+ Enclosure: Thunderbolt 3 (Intel JHL7540 Titan Ridge 4C 2018) | Link: PCIe x3.0 @ 2.5GT/s
 ================================================================================
 
 ########## 1. NVIDIA-SMI (model detection, VRAM, driver) ##########
