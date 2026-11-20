@@ -1,0 +1,16 @@
+[Unit]
+Description=eGPU Audio Function Binding for NVIDIA GPU on Apple T2 Mac
+# Must run after: nvidia-persistenced is ready, and main eGPU attach is complete
+
+After=bolt.service egpu.service multi-user.target
+Requires=egpu.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/egpu-audio.sh
+RemainAfterExit=yes
+StandardOutput=journal+console
+StandardError=journal+console
+
+[Install]
+WantedBy=multi-user.target
