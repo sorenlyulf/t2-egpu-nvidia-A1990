@@ -1,74 +1,115 @@
-# t2-egpu-nvidia
-
+# t2-egpu-nvidia-A1990
 **NVIDIA eGPU enablement on Apple T2 Intel Macs under Linux — Resizable BAR windowing method**
+
+I recently received an RTX 3080 from a friend who upgraded. However I run CachyOS on my T2 Macbook Pro, so I ran into the issue that is described in Antonio Telesca's paper and repo. After using his instructions exactly as described below, I was able to get my RTX 3080 working. Afterward I wasn't quite satasfied so I read everything again and did a little of my own research. I noticed when changing the script that my prefetchable window address started way sooner than what was described, allowing me to run my card with a 128MB aperture instead of 64MB, and it was stable. After some testing I found that not only was it very usable for agentic work flow, but you can use it for some gaming tasks as well. To go along with the changes to the original script I wrote a script and service file to bind audio to the card as a oneshot after startup. I did this to prevent any hang ups that may happen if the audio was bound at boot with the GPU itself. Every step is the same. FOLLOW THEM TO THE LETTER. The only changes are in the egpu-attach.sh script to resize BAR1 to 128MB instead of 64MB, and the terminal commands to install the egpu-audio.sh and the 99-egpu-audio.service.
+As far as I'm aware this will only work if you have a model A1990 MacBook Pro (15-inch, 2018/2019) and the starting address for the prefetchable window is cf700000. The prefetchable window is very important because if it starts after cf700000, this specific script file will not work and you should use the script from [TelescaAntonio/t2-egpu-nvidia](https://github.com/TelescaAntonio/t2-egpu-nvidia).
+
+# Installation guide
+
+Reference system: CachyOS (Arch-based), kernel linux-cachyos, Apple T2 Macbook Pro
+with base T2 Linux setup already done (t2linux kernel/firmware — separate prerequisite,
+see [t2linux wiki](https://wiki.t2linux.org)).
+
+## The two rules that keep your machine alive
+
+1. **The NVIDIA driver must NEVER bind before the BARs are fixed.** The blacklist
+   in `nvidia-egpu.conf` + explicit bind in the script enforce this. Install the
+   blacklist FIRST, regenerate the initramfs, and only then enroll/connect the eGPU.
+2. **GSP must stay off** (`NVreg_EnableGpuFirmware=0`) and use a proprietary
+   driver branch that supports it. `nvidia-open` will hang the machine.
+
+## Steps
+
+### 1. Packages**NVIDIA eGPU enablement on Apple T2 Intel Macs under Linux — Resizable BAR windowing method**
+
+```bash
+sudo pacman -S nvidia-580xx-dkms nvidia-580xx-utils opencl-nvidia-580xx bolt
+# optional, only for 32-bit apps/Steam:
+sudo pacman -S lib32-nvidia-580xx-utils lib32-opencl-nvidia-580xx
+```
+
+Validated version: **580.173.02**. Any branch must support `NVreg_EnableGpuFirmware=0`.
+
+### 2. Kernel cmdline
+
+Add `intel_iommu=on` to your bootloader (Limine: `/boot/limine.conf`), reboot, verify:
+
+```bash
+cat /proc/cmdline | grep intel_iommu
+```
+
+### 3. Install config files (BEFORE connecting the eGPU)
+
+```bash
+sudo cp config/nvidia-egpu.conf /etc/modprobe.d/
+sudo mkinitcpio -P        # or: sudo dracut --regenerate-all --force
+```
+
+### 4. Thunderbolt authorization (once, eGPU connected)
+
+```bash
+boltctl list
+sudo boltctl enroll --policy auto <UUID>
+```
+
+### 5. Identify YOUR PCI addresses
+
+```bash
+lspci -tv                                  # find GPU + upstream bridge
+lspci -vv -s 00:01.1 | grep Prefetchable   # root port window (try 00:01.0/1/2...)
+```
+
+Edit the variables at the top of `scripts/egpu-attach.sh` (GPU, AUD, BRIDGE,
+ROOTPORT, WINDOW_BASE) to match.
+
+### 6. Install script + service
+
+```bash
+sudo install -m 755 scripts/egpu-attach.sh /usr/local/sbin/
+sudo install -m 755 scripts/egpu-audio.sh /usr/local/bin/
+sudo cp config/egpu.service /etc/systemd/system/
+sudo cp config/99-egpu-audio.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable egpu.service && sudo systemctl enable 99-egpu-audio.service
+sudo reboot
+```
+
+### 7. Verify (all must pass)
+
+```bash
+systemctl status egpu.service          # active (exited), success
+nvidia-smi                             # GPU visible
+lspci -vs <GPU> | grep 'Memory at'     # ALL addresses < 0x100000000
+grep -i gsp /proc/driver/nvidia/gpus/*/information   # N/A or absent
+journalctl -b -p err                   # no nvidia/pci errors
+tail -50 /var/log/egpu-attach.log      # "===== eGPU ready ====="
+```
+
+## Troubleshooting
+
+- **Guard "unexpected firmware window" trips** → your root port/window differ;
+  re-check step 5. Do NOT bypass the guard.
+- **BARs above 4G after rescan** → do not load the driver; repeat remove+rescan
+  or reboot.
+- **Machine hangs** → power off completely (not reboot), disconnect eGPU, boot,
+  check `/var/log/egpu-attach.log` (written synchronously exactly for this).
+- Keep the nvidia package pinned; a silent upgrade to a GSP-only branch will
+  hang the machine at next attach.
+
+
+## Validated configuration
+
+- MacBookPro15,1 (Intel i7-9750H, Apple T2), CachyOS Linux, kernel 7.3.4-1-cachyos, Limine, btrfs
+- NVIDIA GeForce RTX 3080 Lite Hash Rate (GA102, VBIOS 94.02.71.40.AA), Thunderbolt 3 eGPU dock (Intel JHL7540 Titan Ridge 4C 2018)
+- Driver Version: 580.196.07, CUDA 13.0, bolt 0.9.11
+
+
+## Citation
 
 Author: **Antonio Telesca** — IRST Institute ([irst-institute.eu](https://irst-institute.eu))
 ORCID: [0009-0003-3048-1044](https://orcid.org/0009-0003-3048-1044) · Web of Science ResearcherID: PKR-6753-2026 · Registered Expert, European Commission (ID: EX2026D1365471)
 
 Companion repository for the paper: *"Circumventing Apple T2 Thunderbolt MMIO Restrictions: Enabling Large-BAR NVIDIA GPUs on Intel Macs via Resizable BAR Windowing"* (2026). DOI: [10.5281/zenodo.22011607](https://doi.org/10.5281/zenodo.22011607)
-
----
-
-## TL;DR
-
-T2-equipped Intel Macs hard-hang (no panic, no log) when a Thunderbolt eGPU's BARs are accessed above the 4 GiB boundary — **even when firmware declares a 64-bit window** — and, independently, when the NVIDIA GSP firmware boots. This is a long-standing limitation on several T2 machines, unresolved upstream ([t2linux issue #189](https://github.com/t2linux/T2-Debian-and-Ubuntu-Kernel/issues/189)). Note: some T2 models/topologies work with `pci=realloc` alone — this method targets the machines where that is not enough (like the MacBookPro16,1).
-
-**The fix (software-only):**
-1. Shrink BAR1 (VRAM aperture) to 64 MiB via PCIe **Resizable BAR** (`setpci`)
-2. PCI subtree **remove + rescan** → all BARs land in the firmware's 32-bit prefetchable window
-3. Bind the **proprietary** NVIDIA driver (580.xx branch) with `NVreg_EnableGpuFirmware=0 NVreg_EnableMSI=0`
-
-Validated: MacBookPro16,1 + RTX 3090 (24 GiB) — full CUDA, 352 W sustained load, Qwen3.8-27B (19.1 GiB in VRAM) at **36.3 tok/s** generation.
-
-## ⚠️ Read before you try
-
-- A wrong step (driver bound before BAR remediation, GSP enabled, BAR left above 4 GiB) **hard-hangs the machine instantly** with no log. The script fails closed at every guard — do not remove the guards.
-- PCI addresses (`45:00.0`, bridge `06:00.0`, root port `00:01.1`, window base `c1700000`) are **specific to this machine/topology**. Identify yours with `lspci -tv` and `lspci -vv -s 00:0x.y | grep Prefetchable` and update the script before running.
-- `nvidia-open` / GSP-only driver branches will **never** work on this platform (GSP boot kills the T2 fabric). Stay on a proprietary branch supporting `NVreg_EnableGpuFirmware=0` (validated: 580.173.02).
-- Tested only on MacBookPro16,1 + GA102 so far. Replication reports are very welcome — please open an issue with your logs.
-
-## Contents
-
-| Path | Description |
-|---|---|
-| `scripts/egpu-attach.sh` | Boot-time attach script (guards + ReBAR shrink + rescan + controlled bind) |
-| `config/nvidia-egpu.conf` | modprobe options + blacklist (`/etc/modprobe.d/`) |
-| `config/egpu.service` | systemd oneshot unit (`/etc/systemd/system/`) |
-| `docs/INSTALL.md` | Step-by-step installation guide |
-| `docs/verification-report.txt` | Full validation evidence: nvidia-smi -q, lspci -vv, dmesg, load telemetry |
-| `paper/` | Preprint (PDF on release) |
-
-## Quick start
-
-See [docs/INSTALL.md](docs/INSTALL.md). Summary:
-
-```bash
-# 1. Packages (CachyOS/Arch, legacy 580xx branch)
-sudo pacman -S nvidia-580xx-dkms nvidia-580xx-utils opencl-nvidia-580xx bolt
-
-# 2. Kernel cmdline: add intel_iommu=on, reboot
-
-# 3. Authorize the enclosure (once)
-boltctl list && sudo boltctl enroll --policy auto <UUID>
-
-# 4. Install the three files (adjust PCI addresses first!)
-sudo cp config/nvidia-egpu.conf /etc/modprobe.d/
-sudo cp config/egpu.service /etc/systemd/system/
-sudo install -m 755 scripts/egpu-attach.sh /usr/local/sbin/
-sudo systemctl daemon-reload && sudo systemctl enable egpu.service
-sudo mkinitcpio -P   # blacklist must reach early boot
-sudo reboot
-```
-
-Verify: `systemctl status egpu.service`, `nvidia-smi`, and `lspci -vs <GPU> | grep 'Memory at'` → **all addresses must be < 0x100000000**.
-
-## Validated configuration
-
-- MacBookPro16,1 (Intel i9, Apple T2), CachyOS Linux, kernel 7.1.8-1-cachyos, Limine, btrfs
-- RTX 3090 (GA102, VBIOS 94.02.59.00.5C), Thunderbolt enclosure (Intel JHL9480 Barlow Ridge)
-- nvidia-580xx-dkms 580.173.02, CUDA 13.0, bolt 0.9.11
-
-## Citation
 
 ```bibtex
 @misc{telesca2026t2egpu,
